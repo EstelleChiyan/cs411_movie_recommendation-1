@@ -33,4 +33,13 @@ public class MovieDetailDAO {
             System.out.printf("Movie %s inserted", movie.getTitle());
         }
     }
+
+    public void deleteMovieById(int id){
+        String sql = "DELETE FROM movies WHERE id=?";
+        int update = jdbcTemplate.update(sql, id);
+        if(update == 1){
+            System.out.printf("Movie %s removed", String.valueOf(id));
+        }
+
+    }
 }
