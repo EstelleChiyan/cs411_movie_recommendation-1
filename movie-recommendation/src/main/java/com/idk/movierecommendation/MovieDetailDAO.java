@@ -49,12 +49,13 @@ public class MovieDetailDAO {
         return movie;
     }
 
-    public void deleteMovieById(int id){
-        String sql = "DELETE FROM movies WHERE id=?";
-        int update = jdbcTemplate.update(sql, id);
+    public MovieDetailModel updateMovie(MovieDetailModel movie){
+        //String UPDATE_EMPLOYEE_SQL = "UPDATE employee_table set email=? WHERE employee_id=?";
+        String updateSQL = "UPDATE movies SET title=?, overview=?, poster_path=?, release_date=?, runtime=?, original_language=? WHERE id=?";
+        int update = jdbcTemplate.update(updateSQL, movie.getTitle(), movie.getOverview(), movie.getPosterPath(), movie.getReleaseDate(), movie.getRuntime(), movie.getOriginalLanguage(), movie.getId());
         if(update == 1){
-            System.out.printf("Movie %s removed", String.valueOf(id));
+            System.out.printf("Movie %s is updated", movie.getTitle());
         }
-
+        return movie;
     }
 }

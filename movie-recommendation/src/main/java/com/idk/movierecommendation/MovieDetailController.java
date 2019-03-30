@@ -33,5 +33,11 @@ public class MovieDetailController {
     public MovieDetailModel deleteMovie(@PathVariable(value = "id") int id) {
         return movieDetailDAO.deleteMovieById(id);
     }
+
+    @PutMapping("/{id}")
+    public MovieDetailModel updateMovie(@PathVariable(value = "id") int id, @Valid @RequestBody MovieDetailModel movie){
+        movie.setId(id);
+        return movieDetailDAO.updateMovie(movie);
+    }
 }
 
