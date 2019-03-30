@@ -25,13 +25,28 @@ public class MovieDetailDAO {
         return movie;
     }
 
-    public void insertMovie(MovieDetailModel movie) {
-        String sql = "INSERT INTO movies VALUES(?,?,?,?,?,?)";
+    public MovieDetailModel insertMovie(MovieDetailModel movie) {
+        String sql = "INSERT INTO movies VALUES(?,?,?,?,?,?,?)";
         int update = jdbcTemplate.update(sql, movie.getId(), movie.getTitle(), movie.getOverview(), movie.getPosterPath(),
-                movie.getReleaseDate(), movie.getOriginalLanguage());
+                movie.getReleaseDate(), movie.getRuntime(), movie.getOriginalLanguage());
         if (update == 1) {
-            System.out.printf("Movie %s inserted", movie.getTitle());
+            System.out.printf("Movie %s is inserted", movie.getTitle());
         }
+        return movie;
+    }
+
+    public MovieDetailModel deleteMovieById(int id) {
+        String selectSQL = "SELECT * FROM movies WHERE id=?";
+        MovieDetailModel movie = jdbcTemplate.queryForObject(selectSQL, new MovieDetailRowMapper(), id);
+        if (movie == null) {
+            return null;
+        }
+        String deleteSQL = "DELETE FROM movies WHERE id=?";
+        int update = jdbcTemplate.update(deleteSQL, id);
+        if (update == 1) {
+            System.out.printf("Movie %s is deleted", movie.getTitle());
+        }
+        return movie;
     }
 
     public void deleteMovieById(int id){

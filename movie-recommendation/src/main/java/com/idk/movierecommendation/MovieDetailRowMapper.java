@@ -16,6 +16,7 @@ public class MovieDetailRowMapper implements RowMapper<MovieDetailModel> {
         movie.setOverview(rs.getString("overview"));
         movie.setPosterPath(rs.getString("poster_path"));
         movie.setReleaseDate(rs.getDate("release_date"));
+        movie.setRuntime(rs.getInt("runtime"));
         movie.setOriginalLanguage(rs.getString("original_language"));
 
         return movie;
