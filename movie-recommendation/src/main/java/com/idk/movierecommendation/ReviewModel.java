@@ -3,13 +3,13 @@ package com.idk.movierecommendation;
 import java.util.Date;
 
 public class ReviewModel {
-    private int id;
+    private String id;
     private String content;
     private Date postDate;
     private int moviesId;
     private int usersId;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -29,7 +29,7 @@ public class ReviewModel {
         return usersId;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,7 +52,7 @@ public class ReviewModel {
     @Override
     public String toString() {
         return "ReviewModel{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", content='" + content + '\''+
                 ", postDate=" + postDate +
                 ", moviesId=" + moviesId +

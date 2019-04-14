@@ -14,6 +14,7 @@ endTime = time.mktime(time2)
 
 # get movie id from file
 movie_id_list = []
+
 with open('../data/movie_id.txt') as f:
 	movie_ids = f.read()
 	movie_ids = movie_ids.split('\n')
@@ -40,12 +41,19 @@ for i in range(10):
 
     for res in reviews['results']:
         id = res['id'];
-        content = res['content']
+        content = res['content'].replace('"', '\\"')
+        content = content.replace(')', '\\)')
+        content = content.replace('(', '\\(')
+        #content = content.replace('[', '\\[')
+        #content = content.replace(']', '\\]')
+        #content = content.replace('\n', '\\n')
+        #content = content.replace('\t', '\\t')
+        output = ''.join(c for c in content if c < '\U00010000')
         userName = res["author"]
         t = random.randint(startTime, endTime)
         postDate = time.localtime(t)
         postDate = time.strftime('%Y-%m-%d', postDate)
-        record = '(%s, %s, %s, %s, %s),' % (id, content, postDate, movie_id, user_id)
+        record = '("%s", "%s", "%s", %s, %s),' % (id, output, postDate, movie_id, user_id)
         review_list.append(record)
         user_id += 1
 

@@ -10,7 +10,7 @@ public class ReviewRowMapper implements RowMapper<ReviewModel>{
     public ReviewModel mapRow(ResultSet rs, int rowNum) throws SQLException{
 
         ReviewModel review = new ReviewModel();
-        review.setId(rs.getInt("id"));
+        review.setId(rs.getString("id"));
         review.setContent(rs.getString("content"));
         review.setPostDate(rs.getDate("post_date"));
         review.setMoviesId(rs.getInt("movies_id"));
