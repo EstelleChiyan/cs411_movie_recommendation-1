@@ -38,6 +38,7 @@ code {
 }
 
 .movie_poster {
+  display: block;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
   margin-bottom: 0.5em;
 }
@@ -64,4 +65,21 @@ code {
   text-align: center;
   width: 100%;
   padding: 0.5em 2em;
+}
+
+.custom-image img {
+  display: block;
+  border-radius: 5px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.custom-card {
+  padding: 10px 16px;
+  align-items: center;
+}
+.custom-card p {
+  padding: 6px;
+  color: #999;
+  align-items: center;
 }

@@ -4,6 +4,8 @@ import axios from "axios";
 import Movies from "./components/movies";
 import Search from "./components/search";
 
+import "semantic-ui-css/semantic.min.css";
+
 class App extends Component {
   constructor(props) {
     super(props);
