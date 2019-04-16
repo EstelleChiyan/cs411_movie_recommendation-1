@@ -7,7 +7,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import MovieDetail from "./components/MovieDetail";
-
+import "antd/dist/antd.css";
 // import axios from "axios";
 
 ReactDOM.render(

@@ -2,25 +2,25 @@ import React from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
-  margin: 40px;
+  margin: 20px;
   border: 5px outset pink;
   &:hover {
-    background-color: yellow;
+    background-color: #ffffcc;
   }
 `;
 
 const Paragraph = styled.p`
-  font-size: 15px;
+  font-size: 16px;
   text-align: center;
 `;
 
 const OutsetBox = () => (
   <Div>
     <Paragraph>
-      Get started with styled-components
       <span role="img" aria-label="sheep">
-        🐑
+        🎬
       </span>
+      Overview
     </Paragraph>
   </Div>
 );
