@@ -6,6 +6,7 @@ import OutsetBox from "./styles/OutsetBox";
 // import styled from "styled-components";
 
 import { Row, Col, Rate } from "antd/lib";
+import RatingComponent from "./RatingComponent";
 // import { Row, Col, Layout, Sider, Rate, Content } from "antd/lib";
 // import YouTube from "react-youtube";
 
@@ -94,6 +95,9 @@ class MovieDetail extends Component {
 
             <strong> Runtime: </strong>
             <p>{amovie.runtime} minutes</p>
+            <hr />
+
+            <RatingComponent movie_id={this.props.match.params.id} />
           </Col>
         </Row>
         <hr />

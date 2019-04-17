@@ -3,36 +3,31 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button, Modal, Icon } from "semantic-ui-react";
 import OutsetBox from "./styles/OutsetBox";
-import { Row, Col, Rate } from "antd/lib";
 
-import ReviewApp from "./ReviewApp";
+import { Row, Col, Rate } from "antd/lib";
 import RatingComponent from "./RatingComponent";
 
-class MovieDetail extends Component {
+class MovieDetailwithRating extends Component {
   constructor(props) {
     super(props);
-    this.state = { movie: {} };
+    this.state = { amovie: {} };
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=cfe422613b250f702980a3bbf9e90716`
-      )
-      .then(res => {
-        this.setState({ movie: res.data });
-      });
+    const {
+      match: { params }
+    } = this.props;
+    axios.get(`http://127.0.0.1:8080/movies/${params.id}`).then(res => {
+      this.setState({ amovie: res.data });
+    });
   }
 
   render() {
-    const { movie } = this.state;
-    if (!movie) return <p>Loading Data</p>;
+    const { amovie } = this.state;
+    if (!amovie) return <p>Loading Data</p>;
 
     const style = {
-      paddingLeft: "15px",
-      textAlign: "left",
-      margin: "2% auto 5%"
+      paddingLeft: "15px"
     };
 
     const Emoji = props => (
@@ -45,27 +40,35 @@ class MovieDetail extends Component {
         {props.symbol}
       </span>
     );
+    // const opts = {
+    //   height: "260",
+    //   width: "460",
+    //   playerVars: {
+    //     // https://developers.google.com/youtube/player_parameters
+    //     autoplay: 0
+    //   }
+    // };
 
     return (
       <div style={style}>
         <Row>
           <Col span={8} offset={1}>
             <img
-              alt={movie.title}
+              alt={amovie.title}
               width="85%"
-              src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              src={`http://image.tmdb.org/t/p/w500/${amovie.poster_path}`}
             />
           </Col>
           <Col span={12} offset={1}>
             <h1>
               {" "}
-              <Emoji label="sheep" symbol="🤩" /> {movie.title}
+              <Emoji label="sheep" symbol="🤩" /> {amovie.title}
             </h1>
             <hr />
 
             <OutsetBox>Cool</OutsetBox>
 
-            <p className="summary">{movie.overview}</p>
+            <p class="summary">{amovie.overview}</p>
             <hr />
 
             <div className="genere">
@@ -76,43 +79,41 @@ class MovieDetail extends Component {
             <hr />
 
             <strong>Score: </strong>
-            <Rate className="rate" value={movie.vote_average} />
+            <Rate className="rate" value={amovie.vote_average} />
             <hr />
 
             <strong> Date: </strong>
-            <p>{movie.release_date} </p>
+            <p>{amovie.release_date} </p>
             <hr />
 
             <strong> Language: </strong>
-            <p>{movie.original_language}</p>
+            <p>{amovie.original_language}</p>
             <hr />
 
             <strong> Runtime: </strong>
-            <p>{movie.runtime} minutes</p>
+            <p>{amovie.runtime} minutes</p>
             <hr />
 
-            <p>
-              <RatingComponent movie_id={this.props.match.params.id} />
-            </p>
+            <RatingComponent>Hi</RatingComponent>
           </Col>
         </Row>
         <hr />
 
         <Col span={12} offset={1}>
-          <Modal.Actions>
-            <Link to="/">
-              <Button basic color="black" icon labelPosition="left">
-                Go Back to Home Page
-                <Icon name="left arrow" />
-              </Button>
-            </Link>
-          </Modal.Actions>
+          <p>
+            <Modal.Actions>
+              <Link to="/">
+                <Button basic color="black" icon labelPosition="left">
+                  Go Back to Home Page
+                  <Icon name="left arrow" />
+                </Button>
+              </Link>
+            </Modal.Actions>
+          </p>
         </Col>
-
-        <ReviewApp movie_id={this.props.match.params.id} />
       </div>
     );
   }
 }
 
-export default MovieDetail;
+export default MovieDetailwithRating;

@@ -3,7 +3,7 @@ import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 import Authentication from "./Authentication";
 import UserReviewService from "../api/UserReviewService";
-import axios from "axios";
+// import axios from "axios";
 import moment from "moment";
 
 class ReviewApp extends Component {
@@ -37,6 +37,7 @@ class ReviewApp extends Component {
     });
 
     console.log(this.state.review);
+    // console.log(this.state.movie_id);
   }
 
   handleSubmit = event => {

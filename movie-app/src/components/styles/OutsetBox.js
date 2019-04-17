@@ -5,7 +5,7 @@ const Div = styled.div`
   margin: 20px;
   border: 5px outset pink;
   &:hover {
-    background-color: #ffffcc;
+    background-color: white;
   }
 `;
 
