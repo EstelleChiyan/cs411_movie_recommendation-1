@@ -8,11 +8,6 @@ import { Button } from "antd";
 import UserReviewService from "../api/UserReviewService";
 
 class RatingComponent extends React.Component {
-  //   private int rating;
-  //   private Date rating_date;
-  //   private int movies_id;
-  //   private int users_id;
-
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +32,6 @@ class RatingComponent extends React.Component {
     console.log(username);
     UserReviewService.retrieveUserInfo(username)
       .then(Response => {
-        // console.log(Response);
         this.setState({
           rating: nextValue,
           rating_date:

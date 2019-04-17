@@ -3,7 +3,6 @@ import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 import Authentication from "./Authentication";
 import UserReviewService from "../api/UserReviewService";
-// import axios from "axios";
 import moment from "moment";
 
 class ReviewApp extends Component {
