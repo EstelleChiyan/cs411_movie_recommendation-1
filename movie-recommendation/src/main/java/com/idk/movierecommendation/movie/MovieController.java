@@ -1,6 +1,8 @@
 package com.idk.movierecommendation.movie;
 
 
+import com.idk.movierecommendation.reviews.ReviewsDAO;
+import com.idk.movierecommendation.reviews.ReviewsModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,9 @@ public class MovieController {
 
     @Autowired
     private MovieDAO movieDAO;
+
+    @Autowired
+    private ReviewsDAO reviewsDAO;
 
     @GetMapping
     public List<MovieModel> getMovies() {
@@ -38,6 +43,11 @@ public class MovieController {
     @PutMapping("/{id}")
     public MovieModel updateMovie(@PathVariable(value = "id") int id, @Valid @RequestBody MovieModel movie){
         return movieDAO.updateMovie(movie);
+    }
+
+    @GetMapping("/{id}/reviews")
+    public List<ReviewsModel> getReviewsByMovieId(@PathVariable(value = "id") int id) {
+        return reviewsDAO.getReviewByMovieId(id);
     }
 }
 

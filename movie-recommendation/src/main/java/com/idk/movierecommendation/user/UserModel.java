@@ -43,7 +43,7 @@ public class UserModel {
 
     @Override
     public String toString() {
-        return "ReviewModel{" +
+        return "ReviewsModel{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\''+
                 ", password=" + password + '\''+
