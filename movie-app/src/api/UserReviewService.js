@@ -1,35 +1,38 @@
 import axios from "axios";
 
-class UserReviewService{
-    retrieveAllUserReviews(userName){
-        console.log('excuted service'); 
-        return axios.get(`http://localhost:8080/reviews/${userName}`);
-    }
+class UserReviewService {
+  retrieveUserInfo(userName) {
+    console.log("get user infor");
+    return axios.get(`http://localhost:8080/user/${userName}`);
+  }
 
-    retrieveUserInfo(userName){
-        console.log('get user infor');
-        return axios.get(`http://localhost:8080/user/${userName}/info`);
-    }
+  retrieveReviewsByReviewId(reviewId) {
+    console.log("retrieve reviews by review id");
+    return axios.get(`http://localhost:8080/reviews/${reviewId}`);
+  }
 
-    retrieveReview(id){
-        console.log('get single review');
-        return axios.get(`http://localhost:8080/reviews/${id}/find`);
-    }
+  retrieveReviewsByUsername(userName) {
+    console.log("excuted service");
+    return axios.get(`http://localhost:8080/user/${userName}/reviews`);
+  }
 
-    deleteReview(id){
-        console.log('detele review');
-        return axios.delete(`http://localhost:8080/reviews/${id}/delete`);
-    }
+  retrieveReviewsByMovieId(movieId) {
+    console.log("retrieve reviews by movie id");
+    return axios.get(`http://localhost:8080/movies/${movieId}/reviews`);
+  }
 
-    updateReview(id,review){
+  insertReview(review) {
+    console.log("insert review");
+    return axios.post(`http://localhost:8080/reviews`, review);
+  }
 
-        console.log('update review');
-        console.log(id);
-        console.log(review);
-        console.log('check end');
-        return axios.put(`http://localhost:8080/reviews/${id}/update`,review);
-    }
+  deleteReview(id) {
+    return axios.delete(`http://localhost:8080/reviews/${id}`);
+  }
 
+  updateReview(id, review) {
+    return axios.put(`http://localhost:8080/reviews/${id}`, review);
+  }
 }
 
-export default new UserReviewService()
+export default new UserReviewService();

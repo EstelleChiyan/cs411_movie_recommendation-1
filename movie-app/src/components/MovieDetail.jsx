@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Modal, Icon } from "semantic-ui-react";
 import OutsetBox from "./styles/OutsetBox";
 import { Row, Col, Rate } from "antd/lib";
+import ReviewApp from "./ReviewApp";
 
 class MovieDetail extends Component {
   constructor(props) {
@@ -62,7 +63,7 @@ class MovieDetail extends Component {
 
             <OutsetBox>Cool</OutsetBox>
 
-            <p class="summary">{movie.overview}</p>
+            <p className="summary">{movie.overview}</p>
             <hr />
 
             <div className="genere">
@@ -91,17 +92,17 @@ class MovieDetail extends Component {
         <hr />
 
         <Col span={12} offset={1}>
-          <p>
-            <Modal.Actions>
-              <Link to="/">
-                <Button basic color="black" icon labelPosition="left">
-                  Go Back to Home Page
-                  <Icon name="left arrow" />
-                </Button>
-              </Link>
-            </Modal.Actions>
-          </p>
+          <Modal.Actions>
+            <Link to="/">
+              <Button basic color="black" icon labelPosition="left">
+                Go Back to Home Page
+                <Icon name="left arrow" />
+              </Button>
+            </Link>
+          </Modal.Actions>
         </Col>
+
+        <ReviewApp movie_id={this.props.match.params.id} />
       </div>
     );
   }
