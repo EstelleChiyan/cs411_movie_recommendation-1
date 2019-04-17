@@ -1,16 +1,16 @@
-package com.idk.movierecommendation;
+package com.idk.movierecommendation.movie;
 
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MovieDetailRowMapper implements RowMapper<MovieDetailModel> {
+public class MovieRowMapper implements RowMapper<MovieModel> {
 
     @Override
-    public MovieDetailModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public MovieModel mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-        MovieDetailModel movie = new MovieDetailModel();
+        MovieModel movie = new MovieModel();
         movie.setId(rs.getInt("id"));
         movie.setTitle(rs.getString("title"));
         movie.setOverview(rs.getString("overview"));

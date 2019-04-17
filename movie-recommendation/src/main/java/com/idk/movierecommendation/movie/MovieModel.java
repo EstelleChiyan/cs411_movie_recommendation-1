@@ -1,8 +1,8 @@
-package com.idk.movierecommendation;
+package com.idk.movierecommendation.movie;
 
 import java.util.Date;
 
-public class MovieDetailModel {
+public class MovieModel {
 
     private int id;
     private String title;
@@ -70,7 +70,7 @@ public class MovieDetailModel {
 
     @Override
     public String toString() {
-        return "MovieDetailModel{" +
+        return "MovieModel{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", overview='" + overview + '\'' +

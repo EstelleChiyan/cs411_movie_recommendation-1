@@ -1,4 +1,4 @@
-package com.idk.movierecommendation;
+package com.idk.movierecommendation.user;
 
 public class UserModel {
 
@@ -7,9 +7,7 @@ public class UserModel {
     private String password;
     private String email;
 
-    protected UserModel(){
-
-    }
+    protected UserModel(){}
 
     public void setId(int id) {
         this.id = id;
@@ -52,6 +50,4 @@ public class UserModel {
                 ", email=" + email +'\''+
                 '}';
     }
-
-
 }

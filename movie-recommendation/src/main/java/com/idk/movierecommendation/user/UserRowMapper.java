@@ -1,4 +1,4 @@
-package com.idk.movierecommendation;
+package com.idk.movierecommendation.user;
 
 import org.springframework.jdbc.core.RowMapper;
 
@@ -16,6 +16,4 @@ public class UserRowMapper implements RowMapper<UserModel> {
         user.setEmail(rs.getString("email"));
         return user;
     }
-
-
 }
