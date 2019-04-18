@@ -12,9 +12,7 @@ class RatingComponent extends React.Component {
     super(props);
     this.state = {
       rating: 0,
-      //   rate_date: "",
       rating_date: moment(new Date()).format("YYYY-MM-DD"),
-      //   user_id: "",
       movies_id: this.props.movie_id,
       users_id: ""
     };
