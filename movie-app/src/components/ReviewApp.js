@@ -36,25 +36,20 @@ class ReviewApp extends Component {
     });
 
     console.log(this.state.review);
-    // console.log(this.state.movie_id);
   }
 
   handleSubmit = event => {
     event.preventDefault();
-
     let reviews = [];
     let review = {};
     Object.assign(review, this.state.review);
     Object.assign(reviews, this.state.reviews);
+
     review.post_date = moment(new Date()).format("YYYY-MM-DD");
     reviews.push(review);
     this.setState({ reviews });
 
-    console.log(review);
     UserReviewService.insertReview(review);
-
-    // axios.post(`http://localhost:8080/${this.state.movie_id}/reviews`, review);
-
     document.getElementById("review-text").value = "";
   };
 
