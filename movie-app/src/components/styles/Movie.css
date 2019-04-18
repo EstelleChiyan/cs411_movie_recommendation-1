@@ -18,7 +18,7 @@ hr {
 .rate {
   margin-top: 1%;
   display: block;
-} 
+}
 
 .genere {
   margin-top: 1%;
@@ -30,4 +30,10 @@ hr {
 
 .trailer {
   margin-bottom: 1%;
+}
+
+.style {
+  padding-left: 15px;
+  text-align: left;
+  margin: 2% auto 5%;
 }

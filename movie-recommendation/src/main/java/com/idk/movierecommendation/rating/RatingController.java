@@ -1,4 +1,5 @@
 package com.idk.movierecommendation.rating;
+import com.idk.movierecommendation.reviews.ReviewsModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +11,19 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
+@RequestMapping("/rating")
 public class RatingController {
 
     @Autowired
     private RatingDAO ratingDAO;
 
-    @PostMapping("movie/addrating")
-    public ResponseEntity<RatingModel> postUser(@Valid @RequestBody RatingModel ratingModel) {
-        RatingModel rate = ratingDAO.postRating(ratingModel);
-        return new ResponseEntity<RatingModel>(rate, HttpStatus.OK);
+    @PostMapping
+    public RatingModel addRating(@Valid @RequestBody RatingModel rating){
+        return ratingDAO.addRating(rating);
+    }
 
+    @GetMapping("/{movieId}")
+    public List<RatingModel> getRatingByMovieId(@PathVariable(value = "movieId") int movieId){
+        return ratingDAO.getRatingByMovieId(movieId);
     }
 }

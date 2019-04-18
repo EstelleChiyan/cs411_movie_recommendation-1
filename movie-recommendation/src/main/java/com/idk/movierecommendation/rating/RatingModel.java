@@ -1,14 +1,11 @@
 package com.idk.movierecommendation.rating;
 import java.util.Date;
+
 public class RatingModel {
     private int rating;
     private Date rating_date;
     private int movies_id;
     private int users_id;
-
-    protected RatingModel(){
-
-    }
 
     public int getRating() {
         return rating;
@@ -45,11 +42,10 @@ public class RatingModel {
     @Override
     public String toString() {
         return "RatingModel{" +
-                "rating='" + rating + '\'' +
-                ", rating_date='" + rating_date + '\''+
-                ", movies_id=" + movies_id + '\''+
-                ", users_id=" + users_id +'\''+
+                "rating=" + rating +
+                ", rating_date=" + rating_date +
+                ", movies_id=" + movies_id +
+                ", users_id=" + users_id +
                 '}';
     }
-
 }
