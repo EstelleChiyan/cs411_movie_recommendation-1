@@ -41,7 +41,8 @@ class LoginComponent extends Component {
           this.state.username,
           this.state.password
         );
-        this.props.history.push("/reviews");
+        this.setState({});
+        this.props.history.push("/");
       }
     });
   }

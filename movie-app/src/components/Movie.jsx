@@ -15,9 +15,6 @@ class Movie extends Component {
               alt={this.props.title}
             />
           </Link>
-          <figcaption>
-            <span className="movie_vote">{this.props.vote_average}/10</span>
-          </figcaption>
           <div className="movie_title">{this.props.title}</div>
         </figure>
       </div>

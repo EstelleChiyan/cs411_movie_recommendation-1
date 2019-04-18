@@ -13,6 +13,7 @@ import ReviewComponent from "./ReviewComponent";
 import RegistrationSuccessfulComponent from "./RegistrationSuccessfulComponent";
 import Movies from "./Movies";
 import MovieDetail from "./MovieDetail";
+import Authentication from "./Authentication";
 
 class MainpageComponent extends Component {
   render() {
@@ -21,8 +22,16 @@ class MainpageComponent extends Component {
         <Router>
           <HeaderComponent />
           <Switch>
-            <Route path="/" exact component={Movies} />
-            <Route path="/movies" exact component={Movies} />
+            <Route
+              path="/"
+              exact
+              component={() => <Movies apiUrl="movies" />}
+            />
+            <Route
+              path="/movies"
+              exact
+              component={() => <Movies apiUrl="movies" />}
+            />
             <Route path="/movies/:id" component={MovieDetail} />
             <Route path="/login" component={LoginComponent} />
             <Route path="/signup" component={RegistrationComponent} />
@@ -35,9 +44,16 @@ class MainpageComponent extends Component {
               path="/reviews/:id/update"
               component={ReviewComponent}
             />
-            <AuthenticatedRoute path="/recommend" component={LoginComponent} />
             <AuthenticatedRoute
-              path="/reviews/:name"
+              path="/recommend"
+              component={() => (
+                <Movies
+                  apiUrl={`recommendation/${Authentication.getLoggedInUserName()}`}
+                />
+              )}
+            />
+            <AuthenticatedRoute
+              path="/reviews"
               component={ListreviewComponent}
             />
           </Switch>

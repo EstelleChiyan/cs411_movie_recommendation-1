@@ -12,10 +12,12 @@ class Movies extends Component {
   }
 
   getPopularMovies = () => {
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716`;
+    // const url = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716`;
+    const url = `http://localhost:8080/${this.props.apiUrl}`;
+    console.log(url);
     axios.get(url).then(res => {
       this.setState({
-        movies: res.data.results
+        movies: res.data
       });
     });
   };

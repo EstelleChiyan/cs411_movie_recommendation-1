@@ -17,7 +17,7 @@ class ListreviewComponent extends Component {
   }
 
   componentDidMount() {
-    let username = Authentication.getLoggedInUserName("authenticatedUser");
+    let username = Authentication.getLoggedInUserName();
     UserReviewService.retrieveReviewsByUsername(username).then(Response => {
       //   console.log(Response);
       this.setState({
@@ -35,7 +35,7 @@ class ListreviewComponent extends Component {
   }
 
   refreshReviews() {
-    let username = Authentication.getLoggedInUserName("authenticatedUser");
+    let username = Authentication.getLoggedInUserName();
     UserReviewService.retrieveReviewsByUsername(username).then(Response => {
       // console.log(Response);
       this.setState({
