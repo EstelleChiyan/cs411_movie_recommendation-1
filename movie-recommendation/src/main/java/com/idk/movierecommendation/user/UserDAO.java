@@ -27,14 +27,5 @@ public class UserDAO {
         int status = jdbcTemplate.update(sql, userModel.getUsername(), userModel.getPassword(), userModel.getEmail(), userModel.getId());
         return userModel;
     }
-
-//    public boolean checkUserByName(String username) {
-//        String sql = "SELECT * FROM users WHERE username=?";
-//        UserModel user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), username);
-//        if(user !== null){
-//            return true;
-//        }
-//        return false;
-//    }
 }
 

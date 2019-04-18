@@ -18,7 +18,6 @@ public class MovieRowMapper implements RowMapper<MovieModel> {
         movie.setReleaseDate(rs.getDate("release_date"));
         movie.setRuntime(rs.getInt("runtime"));
         movie.setOriginalLanguage(rs.getString("original_language"));
-
         return movie;
     }
 }
