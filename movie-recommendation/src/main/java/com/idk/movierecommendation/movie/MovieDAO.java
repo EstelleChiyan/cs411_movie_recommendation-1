@@ -71,4 +71,15 @@ public class MovieDAO {
         List<MovieModel> moviesList = jdbcTemplate.query(sql, new MovieRowMapper(), tagId);
         return moviesList;
     }
+
+    public MovieModel getMovieByName(String moviename){
+        String sql ="SELECT * FROM movie WHERE title=?";
+        MovieModel ret = jdbcTemplate.queryForObject(sql, new MovieRowMapper(), moviename);
+        return ret;
+    }
+
+    public List<MovieModel> getMatchMovies(String name){
+        String sql="SELECT * FROM movie WHERE movie.title LIKE ?";
+        return jdbcTemplate.query(sql, new MovieRowMapper(), "%" + name + "%");
+    }
 }
