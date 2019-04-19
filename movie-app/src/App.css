@@ -170,3 +170,47 @@
   background-color: #282c34;
   color: white;
 }
+
+.tag-list {
+  /* text-align: left;
+  position: relative;
+  font-size: 1vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tag-list h3 {
+  padding: 0.5em 0.3em;
+  margin: 0;
+  font-size: 2vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.tag {
+  display: block;
+  overflow: hidden;
+  height: 2.5em;
+  border: none;
+  cursor: pointer;
+}
+
+.tag-name {
+  margin: 0 0.5em;
+  padding: 0;
+  text-align: left;
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+.tag:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tag-active {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+}

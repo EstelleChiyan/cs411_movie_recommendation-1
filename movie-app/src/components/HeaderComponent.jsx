@@ -31,7 +31,7 @@ class HeaderComonent extends Component {
 
           <ul className="navbar-nav">
             <li>
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/tags">
                 Category
               </Link>
             </li>

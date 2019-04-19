@@ -7,8 +7,7 @@ class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [],
-      pageCount: 10
+      movies: []
     };
   }
 
@@ -31,13 +30,15 @@ class Movies extends Component {
     const { movies } = this.state;
 
     return (
-      <ul className="movies">
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <Movie {...movie} />
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul className="movies">
+          {movies.map(movie => (
+            <li key={movie.id}>
+              <Movie {...movie} />
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }

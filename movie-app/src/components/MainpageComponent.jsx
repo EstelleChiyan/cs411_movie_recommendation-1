@@ -14,6 +14,7 @@ import RegistrationSuccessfulComponent from "./RegistrationSuccessfulComponent";
 import Movies from "./Movies";
 import MovieDetail from "./MovieDetail";
 import Authentication from "./Authentication";
+import MoviesWithTag from "./MoviesWithTag";
 
 class MainpageComponent extends Component {
   render() {
@@ -33,6 +34,7 @@ class MainpageComponent extends Component {
               component={() => <Movies apiUrl="movies" />}
             />
             <Route path="/movies/:id" component={MovieDetail} />
+            <Route path="/tags" component={MoviesWithTag} />
             <Route path="/login" component={LoginComponent} />
             <Route path="/signup" component={RegistrationComponent} />
             <Route
