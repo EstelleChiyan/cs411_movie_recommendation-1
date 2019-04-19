@@ -28,12 +28,14 @@ class ReviewApp extends Component {
       }
     );
     let review = this.state.review;
-    let username = Authentication.getLoggedInUserName("authenticatedUser");
-    UserReviewService.retrieveUserInfo(username).then(Response => {
-      const userInfo = Response.data;
-      review.user_id = userInfo.id;
-      this.setState({ review });
-    });
+    if (Authentication.isUserLoggedIn()) {
+      let username = Authentication.getLoggedInUserName();
+      UserReviewService.retrieveUserInfo(username).then(Response => {
+        const userInfo = Response.data;
+        review.user_id = userInfo.id;
+        this.setState({ review });
+      });
+    }
   }
 
   handleSubmit = event => {

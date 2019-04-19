@@ -31,50 +31,16 @@ class ReviewComponent extends Component {
         movie_id: Response.data.movie_id,
         user_id: Response.data.user_id
       });
-      //console.log('set success')
-      //console.log(this.state)
     });
     console.log(this.state);
     UserReviewService.updateReview(this.state.id, this.state)
       .then(Response => {
         console.log(Response);
-        //console.log('set success')
-        //console.log(this.state)
       })
       .catch(Error => {});
-    //alert('A review was modified ');
-    //event.preventDefault();
   }
 
-  // loginClicked(){
-  //     let name=this.state.username;
-  //     var userInfo=null;
-  //     UserReviewService.retrieveUserInfo(name)
-  //         .then(
-  //             Response => {
-  //                 console.log(Response)
-  //                 userInfo=Response.data;
-  //                 console.log(userInfo);
-  //                 console.log(userInfo.password);
-  //                 if(userInfo===null){
-  //                     console.log('No Such User');
-  //                 }
-  //                 else if(this.state.password!==userInfo.password){
-  //                     console.log("Wrong password");
-  //                     this.setState({hasLoginFailed:true})
-  //                 }
-  //                 else{
-  //                     console.log('Find User. Login Success')
-  //                     Authentication.registerSuccessfulLogin(this.state.username,this.state.password);
-  //                     this.props.history.push("/reviews")
-  //                 }
-  //             }
-  //         )
-  // }
-
   render() {
-    // console.log(this.state)
-
     return (
       <div>
         <h2>My Review</h2>

@@ -17,4 +17,10 @@ public class MovieHasTagDAO {
         List<MovieHasTagModel> movieHasTagList = jdbcTemplate.query(sql, new MovieHasTagRowMapper());
         return movieHasTagList;
     }
+
+    public List<MovieHasTagModel> getTagByMovieId(int movieId){
+        String sql = "SELECT * FROM movie_has_tag WHERE movie_id=?";
+        List<MovieHasTagModel> movieHasTagList = jdbcTemplate.query(sql, new MovieHasTagRowMapper(), movieId);
+        return movieHasTagList;
+    }
 }

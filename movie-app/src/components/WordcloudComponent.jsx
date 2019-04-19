@@ -11,11 +11,8 @@ class WordcloudComponent extends Component {
   }
 
   componentDidMount() {
-    //movie_id: this.props.movie_id,
-    console.log("get word count in componentDidMount");
     WordCloudService.retrieveWordcountByMovieId(this.props.movie_id).then(
       Response => {
-        console.log(Response.data);
         //words: Response.data
         this.setState({
           words: Response.data

@@ -1,10 +1,8 @@
 package com.idk.movierecommendation.tag;
 
+import com.idk.movierecommendation.movie.MovieModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,10 @@ public class MovieHasTagController {
     @GetMapping
     public List<MovieHasTagModel> getAllMovieHasTag() {
         return movieHasTagDAO.getAllMovieHasTag();
+    }
+
+    @GetMapping("/{movieId}")
+    public List<MovieHasTagModel> getTagsByMovieId(@PathVariable(value = "movieId") int movieId){
+        return movieHasTagDAO.getTagByMovieId(movieId);
     }
 }

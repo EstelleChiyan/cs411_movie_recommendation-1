@@ -12,14 +12,10 @@ class WordcloudCusComponent extends Component {
   }
 
   componentDidMount() {
-    //movie_id: this.props.movie_id,
-    console.log("get word count in componentDidMount");
     WordCloudService.retrieveWordcountByMovieId(
       this.props.user_id,
       this.props.movie_id
     ).then(Response => {
-      console.log(Response.data);
-      //words: Response.data
       this.setState({
         words: Response.data
       });
@@ -27,8 +23,6 @@ class WordcloudCusComponent extends Component {
   }
 
   render() {
-    console.log("this.state.words");
-    console.log(this.state.words);
     return (
       <div>
         <ReactWordcloud words={this.state.words} />

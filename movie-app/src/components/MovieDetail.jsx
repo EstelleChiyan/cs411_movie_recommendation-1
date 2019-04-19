@@ -33,36 +33,48 @@ class MovieDetail extends Component {
     let vote = this.state.vote;
     let votes = [];
 
-    let username = await Authentication.getLoggedInUserName();
+    let username = Authentication.getLoggedInUserName();
     vote.movie_id = this.props.match.params.id;
 
-    await UserReviewService.retrieveUserInfo(username).then(res => {
-      const unserInfo = res.data;
-      console.log("ywwy");
-      console.log(unserInfo);
-      vote.user_id = unserInfo.id;
-    });
+    if (Authentication.isUserLoggedIn()) {
+      console.log("user login");
+
+      await UserReviewService.retrieveUserInfo(username).then(res => {
+        const unserInfo = res.data;
+        console.log(unserInfo);
+        vote.user_id = unserInfo.id;
+      });
+
+      await MovieService.getRatingByUserAndMovie(
+        vote.user_id,
+        vote.movie_id
+      ).then(res => {
+        vote.rating = res.data.rating;
+        vote.rating_date = res.data.rating;
+        console.log("vote");
+        console.log(vote);
+      });
+    }
 
     await MovieService.getMovieDetailById(this.props.match.params.id).then(
       res => {
         movie = res.data;
+        console.log("movie");
+        console.log(movie);
       }
     );
 
     await MovieService.getRatingDetailById(this.props.match.params.id).then(
       res => {
         votes = res.data;
+        console.log("votes");
+        console.log(votes);
       }
     );
 
-    MovieService.getRatingByUserAndMovie(vote.user_id, vote.movie_id).then(
-      res => {
-        vote.rating = res.data.rating;
-        vote.rating_date = res.data.rating;
-      }
-    );
-
-    let avg = await this.calculateVoteAvg(votes);
+    let avg = this.calculateVoteAvg(votes);
+    console.log("avg");
+    console.log(avg);
     this.setState({ vote: vote, movie: movie, votes: votes, avg: avg });
   }
 
