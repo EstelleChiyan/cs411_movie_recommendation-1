@@ -7,11 +7,12 @@ class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: []
+      movies: [],
+      pageCount: 10
     };
   }
 
-  getPopularMovies = () => {
+  getMovies = () => {
     // const url = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716`;
     const url = `http://localhost:8080/${this.props.apiUrl}`;
     console.log(url);
@@ -23,7 +24,7 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    this.getPopularMovies();
+    this.getMovies();
   }
 
   render() {
