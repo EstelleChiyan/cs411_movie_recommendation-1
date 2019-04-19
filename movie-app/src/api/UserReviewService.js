@@ -2,7 +2,6 @@ import axios from "axios";
 
 class UserReviewService {
   retrieveUserInfo(userName) {
-    console.log("get user infor");
     return axios.get(`http://localhost:8080/user/${userName}`);
   }
 
@@ -17,7 +16,6 @@ class UserReviewService {
   }
 
   retrieveReviewsByMovieId(movieId) {
-    console.log("retrieve reviews by movie id");
     return axios.get(`http://localhost:8080/movies/${movieId}/reviews`);
   }
 

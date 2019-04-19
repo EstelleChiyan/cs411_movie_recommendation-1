@@ -34,8 +34,6 @@ class ReviewApp extends Component {
       review.user_id = userInfo.id;
       this.setState({ review });
     });
-
-    console.log(this.state.review);
   }
 
   handleSubmit = event => {

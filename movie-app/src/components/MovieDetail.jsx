@@ -10,6 +10,7 @@ import UserReviewService from "../api/UserReviewService";
 import Movie from "./Movie";
 import WordcloudComponent from "./WordcloudComponent";
 import WordcloudCusComponent from "./WordcloudCusComponent";
+import { Row, Col, Rate } from "antd/lib";
 
 class MovieDetail extends Component {
   constructor(props) {
@@ -33,6 +34,14 @@ class MovieDetail extends Component {
     let votes = [];
 
     let username = await Authentication.getLoggedInUserName();
+    vote.movie_id = this.props.match.params.id;
+
+    await UserReviewService.retrieveUserInfo(username).then(res => {
+      const unserInfo = res.data;
+      console.log("ywwy");
+      console.log(unserInfo);
+      vote.user_id = unserInfo.id;
+    });
 
     await MovieService.getMovieDetailById(this.props.match.params.id).then(
       res => {
@@ -89,7 +98,7 @@ class MovieDetail extends Component {
     if (this.state.vote.user_id)
       wcComponent = (
         <WordcloudCusComponent
-          user_id={this.setState.vote.user_id}
+          user_id={this.state.vote.user_id}
           movie_id={this.props.match.params.id}
         />
       );
@@ -100,11 +109,17 @@ class MovieDetail extends Component {
     return (
       <div>
         <MovieInfo movie={this.state.movie} avg={this.state.avg} />
-        <RatingComponent
-          onChange={event => this.handleSubmit(event)}
-          vote={this.state.vote}
-        />
-        {wcComponent}
+        <Row>
+          <Col span={8} offset={1}>
+            <RatingComponent
+              onChange={event => this.handleSubmit(event)}
+              vote={this.state.vote}
+            />
+          </Col>
+          <Col span={12} offset={1}>
+            {wcComponent}
+          </Col>
+        </Row>
         <ReviewApp movie_id={this.props.match.params.id} />
       </div>
     );
