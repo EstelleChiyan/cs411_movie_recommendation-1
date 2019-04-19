@@ -15,10 +15,13 @@ class UserReviewService {
     return axios.get(`http://localhost:8080/user/${userName}/reviews`);
   }
 
+  retrieveReviesByUserId(id) {
+    return axios.get(`http://localhost:8080/user/${id}/reviews`);
+  }
+
   retrieveReviewsByMovieId(movieId) {
     return axios.get(`http://localhost:8080/movies/${movieId}/reviews`);
   }
-
   insertReview(review) {
     console.log("insert review");
     return axios.post(`http://localhost:8080/reviews`, review);

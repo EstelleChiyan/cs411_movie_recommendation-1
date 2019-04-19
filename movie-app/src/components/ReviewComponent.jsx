@@ -7,11 +7,7 @@ class ReviewComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.match.params.id,
-      content: "",
-      post_date: moment(new Date()).format("YYYY-MM-DD"),
-      movie_id: "",
-      user_id: ""
+      content: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,22 +19,24 @@ class ReviewComponent extends Component {
     });
   }
 
-  handleSubmit(event) {
-    let id = this.state.id;
-    //console.log(id)
+  handleSubmit = event => {
+    let review = {};
+    let id = this.props.match.params.id;
+    let uid = 0;
     UserReviewService.retrieveReviewsByReviewId(id).then(Response => {
-      this.setState({
-        movie_id: Response.data.movie_id,
-        user_id: Response.data.user_id
-      });
+      const data = Response.data;
+      console.log(data);
+      review.post_date = moment(new Date()).format("YYYY-MM-DD");
+      review.id = id;
+      review.user_id = data.user_id;
+      review.movie_id = data.movie_id;
+      review.content = this.state.content;
+      uid = data.user_id;
+      UserReviewService.updateReview(id, review);
     });
-    console.log(this.state);
-    UserReviewService.updateReview(this.state.id, this.state)
-      .then(Response => {
-        console.log(Response);
-      })
-      .catch(Error => {});
-  }
+    this.props.history.push(`/reviews/${uid}`);
+    this.props.history.go();
+  };
 
   render() {
     return (
@@ -50,20 +48,16 @@ class ReviewComponent extends Component {
               rows="4"
               cols="100"
               value={this.state.content}
-              onChange={this.handleChange}
-            >
-              {/* {this.state.content} */}
-            </textarea>
+              onChange={event => this.handleChange(event)}
+            />
           </div>
         </Form>
         <div>
-          {/* <button className="btn btn-primary btn-lg btn-space"  onClick={this.invertClicked}>Invert</button> */}
-
           <button
             className="btn btn-success btn-lg "
-            onClick={this.handleSubmit}
+            onClick={event => this.handleSubmit(event)}
           >
-            DoubleToSubmit
+            Submit
           </button>
         </div>
       </div>
