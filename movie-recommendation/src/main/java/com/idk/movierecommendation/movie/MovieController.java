@@ -49,5 +49,10 @@ public class MovieController {
     public List<ReviewsModel> getReviewsByMovieId(@PathVariable(value = "id") int id) {
         return reviewsDAO.getReviewByMovieId(id);
     }
+
+    @GetMapping("/tags/{tagId}")
+    public List<MovieModel> getMoviesByTag(@PathVariable(value = "tagId") int tagId) {
+        return movieDAO.getMoviesByTag(tagId);
+    }
 }
 

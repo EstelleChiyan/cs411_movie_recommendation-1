@@ -63,4 +63,12 @@ public class MovieDAO {
         Integer number = jdbcTemplate.queryForObject(sql, new Object[]{}, Integer.class);
         return number;
     }
+
+    public List<MovieModel> getMoviesByTag(int tagId) {
+        String sql = "SELECT movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.runtime, movie.original_language " +
+                "FROM movie, movie_has_tag " +
+                "WHERE movie.id = movie_has_tag.movie_id AND movie_has_tag.tag_id = ?";
+        List<MovieModel> moviesList = jdbcTemplate.query(sql, new MovieRowMapper(), tagId);
+        return moviesList;
+    }
 }
