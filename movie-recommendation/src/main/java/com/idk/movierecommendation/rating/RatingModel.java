@@ -4,8 +4,8 @@ import java.util.Date;
 public class RatingModel {
     private int rating;
     private Date rating_date;
-    private int movies_id;
-    private int users_id;
+    private int movie_id;
+    private int user_id;
 
     public int getRating() {
         return rating;
@@ -23,20 +23,20 @@ public class RatingModel {
         this.rating_date = rating_date;
     }
 
-    public int getMovies_id() {
-        return movies_id;
+    public int getMovie_id() {
+        return movie_id;
     }
 
-    public void setMovies_id(int movies_id) {
-        this.movies_id = movies_id;
+    public void setMovie_id(int movie_id) {
+        this.movie_id = movie_id;
     }
 
-    public int getUsers_id() {
-        return users_id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUsers_id(int users_id) {
-        this.users_id = users_id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     @Override
@@ -44,8 +44,8 @@ public class RatingModel {
         return "RatingModel{" +
                 "rating=" + rating +
                 ", rating_date=" + rating_date +
-                ", movies_id=" + movies_id +
-                ", users_id=" + users_id +
+                ", movie_id=" + movie_id +
+                ", user_id=" + user_id +
                 '}';
     }
 }

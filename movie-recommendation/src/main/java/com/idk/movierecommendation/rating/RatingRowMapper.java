@@ -11,8 +11,8 @@ public class RatingRowMapper implements  RowMapper<RatingModel>{
         RatingModel rating=new RatingModel();
         rating.setRating(rs.getInt("rating"));
         rating.setRating_date(rs.getDate("rating_date"));
-        rating.setMovies_id(rs.getInt("movies_id"));
-        rating.setUsers_id(rs.getInt("users_id"));
+        rating.setMovie_id(rs.getInt("movie_id"));
+        rating.setUser_id(rs.getInt("user_id"));
         return rating;
     }
 
