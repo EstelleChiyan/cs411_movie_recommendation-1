@@ -11,19 +11,16 @@ class WordcloudComponent extends Component {
   }
 
   componentDidMount() {
-    WordCloudService.retrieveWordcountByMovieId(this.props.movie_id).then(
-      Response => {
-        //words: Response.data
+    WordCloudService.retrieveWordcountByMovieId(this.props.movie_id)
+      .then(Response => {
         this.setState({
           words: Response.data
         });
-      }
-    );
+      })
+      .catch();
   }
 
   render() {
-    console.log("this.state.words");
-    console.log(this.state.words);
     return (
       <div>
         <ReactWordcloud words={this.state.words} />

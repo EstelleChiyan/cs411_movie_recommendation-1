@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button, Modal, Icon } from "semantic-ui-react";
 import OutsetBox from "./styles/OutsetBox";
