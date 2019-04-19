@@ -17,6 +17,7 @@ class MoiveInfo extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.movie_id);
     const id = this.props.movie_id;
     MovieService.getMovieDetailById(id).then(Response => {
       const movie = Response.data;
@@ -25,7 +26,6 @@ class MoiveInfo extends Component {
   }
 
   render() {
-    const { movie } = this.state;
     if (!this.state.movie) return <p>Loading Data</p>;
 
     return (
@@ -33,9 +33,11 @@ class MoiveInfo extends Component {
         <Row>
           <Col span={8} offset={1}>
             <img
-              alt={movie.title}
+              alt={this.state.movie.title}
               width="85%"
-              src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              src={`http://image.tmdb.org/t/p/w500/${
+                this.state.movie.poster_path
+              }`}
             />
             <p />
             <Modal.Actions>
@@ -48,10 +50,10 @@ class MoiveInfo extends Component {
             </Modal.Actions>
           </Col>
           <Col span={12} offset={1}>
-            <h1> {movie.title}</h1>
+            <h1> {this.state.movie.title}</h1>
             <hr />
             <OutsetBox>Cool</OutsetBox>
-            <p className="summary">{movie.overview}</p>
+            <p className="summary">{this.state.movie.overview}</p>
             <hr />
             <div className="genere">
               <span className="genereTitle">
@@ -65,13 +67,13 @@ class MoiveInfo extends Component {
             <strong> Rate the movie </strong>
             <hr />
             <strong> Date: </strong>
-            {movie.release_date}
+            {this.state.movie.release_date}
             <hr />
             <strong> Language: </strong>
-            {movie.original_language}
+            {this.state.movie.original_language}
             <hr />
             <strong> Runtime: </strong>
-            {movie.runtime} minutes
+            {this.state.movie.runtime} minutes
           </Col>
         </Row>
         <hr />

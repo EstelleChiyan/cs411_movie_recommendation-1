@@ -21,8 +21,8 @@ class MovieDetail extends Component {
       vote: {
         rating: null,
         rating_date: null,
-        movies_id: props.match.params.id,
-        users_id: null
+        movie_id: null,
+        user_id: null
       }
     };
   }
@@ -37,34 +37,35 @@ class MovieDetail extends Component {
     let username = Authentication.getLoggedInUserName("authenticatedUser");
     UserReviewService.retrieveUserInfo(username).then(Response => {
       const userInfo = Response.data;
-      vote.users_id = userInfo.id;
+      vote.user_id = userInfo.id;
+      vote.movie_id = this.props.match.params.id;
       this.setState({ vote });
     });
-
-    console.log(this.state.review);
   }
 
   handleSubmit = event => {
+    //event.preventDefault();
     let votes = [];
     let vote = {};
+    Object.assign(vote, this.state.vote);
     Object.assign(votes, this.state.votes);
     vote.rating_date = moment(new Date()).format("YYYY-MM-DD");
     vote.rating = event;
     MovieService.addRating(vote);
-    votes.push(vote);
-    this.setState({ vote }, { votes });
-
-    console.log(event);
+    console.log(vote);
+    //votes.push(vote);
+    this.setState({ vote });
+    //console.log(event);
   };
 
   render() {
     return (
       <div>
-        <MovieInfo
-          movie_id={this.props.match.params.id}
-          votes={this.state.votes}
+        <MovieInfo movie_id={this.props.match.params.id} />
+        <RatingComponent
+          onChange={event => this.handleSubmit(event)}
+          vote={this.state.vote}
         />
-        <RatingComponent vote={this.state.vote} onSubmit={this.handleSubmit} />
         <ReviewApp movie_id={this.props.match.params.id} />
       </div>
     );

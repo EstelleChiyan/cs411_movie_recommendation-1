@@ -23,7 +23,7 @@ public class RatingDAO {
     }
 
     public List<RatingModel> getRatingByMovieId(int movieId){
-        String sql = "SELECT * FROM rating WHERE movies_id=?";
+        String sql = "SELECT * FROM rating WHERE movie_id=?";
         List<RatingModel> ratingList = jdbcTemplate.query(sql, new RatingRowMapper(), movieId);
         return ratingList;
     }
