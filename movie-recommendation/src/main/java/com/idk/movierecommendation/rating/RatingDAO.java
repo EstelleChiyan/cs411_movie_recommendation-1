@@ -15,7 +15,7 @@ public class RatingDAO {
 
     public RatingModel addRating(RatingModel ratingModel){
         String sql = "INSERT INTO rating VALUES(?,?,?,?)";
-        int update = jdbcTemplate.update(sql, ratingModel.getRating(), ratingModel.getRating_date(), ratingModel.getMovies_id(), ratingModel.getUsers_id());
+        int update = jdbcTemplate.update(sql, ratingModel.getRating(), ratingModel.getRating_date(), ratingModel.getMovie_id(), ratingModel.getUser_id());
         if (update == 1) {
             System.out.printf("Rating %s is posted", ratingModel.getRating());
         }

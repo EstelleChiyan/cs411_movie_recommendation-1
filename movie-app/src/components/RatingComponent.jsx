@@ -10,7 +10,7 @@ import UserReviewService from "../api/UserReviewService";
 class RatingComponent extends React.Component {
   render() {
     let star = null;
-    if (this.props.vote.users_id) star = <Rate disabled value={0} />;
+    if (!this.props.vote.users_id) star = <Rate disabled value={0} />;
     else if (this.props.vote.rating)
       star = <Rate disabled value={this.props.vote.rating} />;
     else star = <Rate onChange={event => this.props.onSubmit(event)} />;
