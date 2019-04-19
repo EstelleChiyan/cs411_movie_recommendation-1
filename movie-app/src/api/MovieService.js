@@ -16,5 +16,9 @@ class MovieService {
   getRatingByUserAndMovie(user_id, movie_id) {
     return axios.get(`http://localhost:8080/rating/${movie_id}/${user_id}`);
   }
+
+  getTagByMovieId(movie_id) {
+    return axios.get(`http://localhost:8080/tags/${movie_id}`);
+  }
 }
 export default new MovieService();

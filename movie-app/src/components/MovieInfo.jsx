@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Modal, Icon } from "semantic-ui-react";
 import OutsetBox from "./styles/OutsetBox";
 import { Row, Col, Rate } from "antd/lib";
+import MovieInfoTag from "./MovieInfoTag";
 
 import "./styles/Movie.css";
 
@@ -37,11 +38,8 @@ class MoiveInfo extends Component {
             <OutsetBox>Cool</OutsetBox>
             <p className="summary">{this.props.movie.overview}</p>
             <hr />
-            <div className="genere">
-              <span className="genereTitle">
-                <strong>Generes: </strong>
-              </span>
-            </div>
+            <strong>Generes: </strong>
+            <MovieInfoTag tags={this.props.tags} />
             <hr />
             <strong>Score: </strong>
             <Rate disabled value={~~this.props.avg} />

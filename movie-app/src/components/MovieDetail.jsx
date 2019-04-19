@@ -16,6 +16,7 @@ class MovieDetail extends Component {
     super(props);
     this.state = {
       movie: {},
+      tags: [],
       votes: [],
       avg: 0,
       vote: {
@@ -39,14 +40,11 @@ class MovieDetail extends Component {
     if (Authentication.isUserLoggedIn()) {
       UserReviewService.retrieveUserInfo(username).then(res => {
         const unserInfo = res.data;
-        console.log(unserInfo);
         vote.user_id = unserInfo.id;
         MovieService.getRatingByUserAndMovie(vote.user_id, vote.movie_id).then(
           res => {
             vote.rating = res.data.rating;
             vote.rating_date = res.data.rating;
-            // console.log("vote");
-            // console.log(vote);
             this.setState({ vote });
           }
         );
@@ -55,17 +53,21 @@ class MovieDetail extends Component {
 
     MovieService.getRatingDetailById(this.props.match.params.id).then(res => {
       votes = res.data;
-      // console.log("votes");
-      // console.log(votes);
       avg = this.calculateVoteAvg(votes);
       this.setState({ votes, avg });
     });
 
     MovieService.getMovieDetailById(this.props.match.params.id).then(res => {
       movie = res.data;
-      // console.log("movie");
-      // console.log(movie);
       this.setState({ movie });
+      MovieService.getTagByMovieId(this.props.match.params.id).then(res => {
+        const data = res.data;
+        let tags = [];
+        for (var i = 0; i < data.length; i++) {
+          tags.push(data[i].tag_id);
+        }
+        this.setState({ tags });
+      });
     });
   }
 
@@ -111,7 +113,11 @@ class MovieDetail extends Component {
       );
     return (
       <div>
-        <MovieInfo movie={this.state.movie} avg={this.state.avg} />
+        <MovieInfo
+          movie={this.state.movie}
+          avg={this.state.avg}
+          tags={this.state.tags}
+        />
         <Row>
           <Col span={8} offset={1}>
             <RatingComponent
