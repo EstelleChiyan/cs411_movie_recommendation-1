@@ -7,10 +7,9 @@ import MovieInfo from "./MovieInfo";
 import Authentication from "./Authentication";
 import MovieService from "../api/MovieService";
 import UserReviewService from "../api/UserReviewService";
-import Movie from "./Movie";
 import WordcloudComponent from "./WordcloudComponent";
 import WordcloudCusComponent from "./WordcloudCusComponent";
-import { Row, Col, Rate } from "antd/lib";
+import { Row, Col } from "antd/lib";
 
 class MovieDetail extends Component {
   constructor(props) {
@@ -32,50 +31,42 @@ class MovieDetail extends Component {
     let movie = {};
     let vote = this.state.vote;
     let votes = [];
+    let avg = 0;
 
     let username = Authentication.getLoggedInUserName();
     vote.movie_id = this.props.match.params.id;
 
     if (Authentication.isUserLoggedIn()) {
-      console.log("user login");
-
-      await UserReviewService.retrieveUserInfo(username).then(res => {
+      UserReviewService.retrieveUserInfo(username).then(res => {
         const unserInfo = res.data;
         console.log(unserInfo);
         vote.user_id = unserInfo.id;
-      });
-
-      await MovieService.getRatingByUserAndMovie(
-        vote.user_id,
-        vote.movie_id
-      ).then(res => {
-        vote.rating = res.data.rating;
-        vote.rating_date = res.data.rating;
-        console.log("vote");
-        console.log(vote);
+        MovieService.getRatingByUserAndMovie(vote.user_id, vote.movie_id).then(
+          res => {
+            vote.rating = res.data.rating;
+            vote.rating_date = res.data.rating;
+            // console.log("vote");
+            // console.log(vote);
+            this.setState({ vote });
+          }
+        );
       });
     }
 
-    await MovieService.getMovieDetailById(this.props.match.params.id).then(
-      res => {
-        movie = res.data;
-        console.log("movie");
-        console.log(movie);
-      }
-    );
+    MovieService.getRatingDetailById(this.props.match.params.id).then(res => {
+      votes = res.data;
+      // console.log("votes");
+      // console.log(votes);
+      avg = this.calculateVoteAvg(votes);
+      this.setState({ votes, avg });
+    });
 
-    await MovieService.getRatingDetailById(this.props.match.params.id).then(
-      res => {
-        votes = res.data;
-        console.log("votes");
-        console.log(votes);
-      }
-    );
-
-    let avg = this.calculateVoteAvg(votes);
-    console.log("avg");
-    console.log(avg);
-    this.setState({ vote: vote, movie: movie, votes: votes, avg: avg });
+    MovieService.getMovieDetailById(this.props.match.params.id).then(res => {
+      movie = res.data;
+      // console.log("movie");
+      // console.log(movie);
+      this.setState({ movie });
+    });
   }
 
   calculateVoteAvg = votes => {

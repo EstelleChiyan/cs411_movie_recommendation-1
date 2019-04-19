@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.LinkedList;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -53,6 +54,21 @@ public class MovieController {
     @GetMapping("/tags/{tagId}")
     public List<MovieModel> getMoviesByTag(@PathVariable(value = "tagId") int tagId) {
         return movieDAO.getMoviesByTag(tagId);
+    }
+
+    @GetMapping("/title/{name}")
+    public MovieModel getMovieByName(@PathVariable(value="name") String name){
+        return movieDAO.getMovieByName(name);
+    }
+
+    @GetMapping("/match/{title}")
+    public List<String> getMatchMovies(@PathVariable(value = "title") String title){
+        List<MovieModel> MatchMovies = movieDAO.getMatchMovies(title);
+        List<String> MatchMoviesTitle = new LinkedList<>();
+        for (MovieModel match: MatchMovies) {
+            MatchMoviesTitle.add(match.getTitle());
+        }
+        return MatchMoviesTitle;
     }
 }
 
