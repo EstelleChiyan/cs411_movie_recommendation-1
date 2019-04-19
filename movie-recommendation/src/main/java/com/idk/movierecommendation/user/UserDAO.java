@@ -18,7 +18,7 @@ public class UserDAO {
 
     public UserModel postUser(UserModel userModel){
         String sql = "INSERT INTO users VALUES(?,?,?,?)";
-        int update = jdbcTemplate.update(sql, userModel.getId(), userModel.getUsername(), userModel.getPassword(), userModel.getEmail());
+        int update = jdbcTemplate.update(sql, null, userModel.getUsername(), userModel.getPassword(), userModel.getEmail());
         return userModel;
     }
 

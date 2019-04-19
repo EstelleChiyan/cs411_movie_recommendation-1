@@ -6,7 +6,7 @@ class RegistrationComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 10,
+      id: null,
       username: "",
       password: "",
       email: ""
@@ -26,6 +26,7 @@ class RegistrationComponent extends Component {
     console.log(this.state);
     let user = this.state;
     UserService.insertUser(user).then(Response => {
+      console.log(Response.data);
       if (Response.status === 200) {
         console.log("register successful");
         this.props.history.push("/regsuccess");

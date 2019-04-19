@@ -23,7 +23,11 @@ class WordcloudComponent extends Component {
   render() {
     return (
       <div>
-        <ReactWordcloud words={this.state.words} />
+        <ReactWordcloud
+          words={this.state.words}
+          minSize={[400, 200]}
+          size={[100, 200]}
+        />
       </div>
     );
   }

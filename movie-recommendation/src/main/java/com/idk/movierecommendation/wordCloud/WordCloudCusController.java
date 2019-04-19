@@ -152,10 +152,10 @@ public class WordCloudCusController {
                         .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                                 (e1, e2) -> e2, LinkedHashMap::new));
-        //System.out.println(sortedMap);
+
         List<Integer> UserRank = new ArrayList<Integer>();
         UserRank.addAll(sortedMap.keySet());
-
+        System.out.println(sortedMap);
 
 
         //List<Integer> customers= sortedMap.keySet();
@@ -251,12 +251,14 @@ public class WordCloudCusController {
 
         for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
             String key = entry.getKey();
-            Object value = entry.getValue();
-            // ...
+            int value = entry.getValue();
+
             Map<String, Object> temp = new HashMap<String, Object>();
             temp.put("text", key);
             temp.put("value", value);
             ret.add(temp);
+
+
         }
 
         return ret;
