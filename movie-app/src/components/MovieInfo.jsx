@@ -44,8 +44,6 @@ class MoiveInfo extends Component {
             <strong>Score: </strong>
             <Rate disabled value={~~this.props.avg} />
             <hr />
-            <strong> Rate the movie </strong>
-            <hr />
             <strong> Date: </strong>
             {this.props.movie.release_date}
             <hr />

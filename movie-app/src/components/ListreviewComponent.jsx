@@ -56,7 +56,6 @@ class ListreviewComponent extends Component {
         <table className="table table-hover">
           <thead>
             <tr>
-              <th>movie</th>
               <th>review</th>
               <th>date</th>
               <th>Update</th>
@@ -66,7 +65,7 @@ class ListreviewComponent extends Component {
           <tbody>
             {this.state.reviews.map(review => (
               <tr key={review.id}>
-                <td>{review.movies_id}</td>
+                {/* <td>{review.movies_id}</td> */}
                 <td>{review.content}</td>
                 <td>{review.post_date}</td>
                 <td>
