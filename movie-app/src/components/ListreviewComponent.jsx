@@ -6,10 +6,7 @@ class ListreviewComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [
-        // {id: 1, movie:'Harry', rate: 5, moviereview:'review of movie', date:'20190203'},
-        // {id: 2, movie:'Harry2', rate: 5, moviereview:'review of movie', date:'20190203'}
-      ]
+      reviews: []
     };
     this.deleteReviewClicked = this.deleteReviewClicked.bind(this);
     this.refreshReviews = this.refreshReviews.bind(this);
@@ -18,10 +15,12 @@ class ListreviewComponent extends Component {
 
   componentDidMount() {
     let username = Authentication.getLoggedInUserName();
-    UserReviewService.retrieveReviewsByUsername(username).then(Response => {
-      //   console.log(Response);
-      this.setState({
-        reviews: Response.data
+    UserReviewService.retrieveUserInfo(username).then(Response => {
+      let id = Response.data.id;
+      UserReviewService.retrieveReviesByUserId(id).then(res => {
+        this.setState({
+          reviews: res.data
+        });
       });
     });
   }
@@ -36,10 +35,12 @@ class ListreviewComponent extends Component {
 
   refreshReviews() {
     let username = Authentication.getLoggedInUserName();
-    UserReviewService.retrieveReviewsByUsername(username).then(Response => {
-      // console.log(Response);
-      this.setState({
-        reviews: Response.data
+    UserReviewService.retrieveUserInfo(username).then(Response => {
+      let id = Response.data.id;
+      UserReviewService.retrieveReviesByUserId(id).then(res => {
+        this.setState({
+          reviews: res.data
+        });
       });
     });
   }
@@ -49,8 +50,6 @@ class ListreviewComponent extends Component {
   }
 
   render() {
-    // const UsernameLogged = Authentication.getLoggedInUserName();
-    // console.log(UsernameLogged);
     return (
       <div>
         <h2>My Movie Reviews</h2>
@@ -58,7 +57,6 @@ class ListreviewComponent extends Component {
           <thead>
             <tr>
               <th>movie</th>
-              {/* <th>rate</th> */}
               <th>review</th>
               <th>date</th>
               <th>Update</th>
@@ -69,7 +67,6 @@ class ListreviewComponent extends Component {
             {this.state.reviews.map(review => (
               <tr key={review.id}>
                 <td>{review.movies_id}</td>
-                {/* <td>{review.rate}</td> */}
                 <td>{review.content}</td>
                 <td>{review.post_date}</td>
                 <td>

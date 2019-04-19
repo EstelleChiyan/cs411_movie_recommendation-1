@@ -46,10 +46,9 @@ public class UserController {
         return new ResponseEntity<UserModel>(_user, HttpStatus.OK);
     }
 
-    @GetMapping("/{username}/reviews")
-    public ResponseEntity<List<ReviewsModel>> findReviewsByUsername(@PathVariable(name = "username") String username) {
-        UserModel user = userDAO.getUserByName(username);
-        List<ReviewsModel> reviews = reviewsDAO.getReviewByUserId(user.getId());
+    @GetMapping("/{id}/reviews")
+    public ResponseEntity<List<ReviewsModel>> findReviewsByUsername(@PathVariable(name = "id") int id) {
+        List<ReviewsModel> reviews = reviewsDAO.getReviewByUserId(id);
         return new ResponseEntity<List<ReviewsModel>>(reviews, HttpStatus.OK);
     }
 
