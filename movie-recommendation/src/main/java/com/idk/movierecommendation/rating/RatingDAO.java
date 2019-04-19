@@ -32,13 +32,16 @@ public class RatingDAO {
 
     public List<RatingModel> getAllRating(){
         String sql= "SELECT * FROM rating";
-        List<RatingModel> ratings=  jdbcTemplate.query(sql, new RatingRowMapper());
+        List<RatingModel> ratings =  jdbcTemplate.query(sql, new RatingRowMapper());
         return ratings;
     }
 
     public RatingModel getRatingByUserAndMovie(int user_id, int movie_id){
         String sql = "SELECT * FROM rating WHERE user_id=? AND movie_id=?";
-        RatingModel rating = jdbcTemplate.queryForObject(sql, new RatingRowMapper(), user_id, movie_id);
-        return rating;
+        List<RatingModel> ratings = jdbcTemplate.query(sql, new RatingRowMapper(), user_id, movie_id);
+        if (ratings.size() == 0) {
+            return null;
+        }
+        return ratings.get(0);
     }
 }
