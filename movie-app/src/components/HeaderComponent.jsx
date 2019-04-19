@@ -6,63 +6,20 @@ class HeaderComonent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      loginstatus: false,
-      reviewpath: "/reviews"
+      status: Authentication.isUserLoggedIn()
     };
-    this.clickLogout = this.clickLogout.bind(this);
-    this.clickReview = this.clickReview.bind(this);
   }
 
-  clickLogout() {
+  clickLogout = () => {
     Authentication.logout();
     this.setState({
-      username: "",
-      loginstatus: false,
-      reviewpath: "/reviews"
+      status: false
     });
-    //console.log('clickLogout')
-    //if (this.state.loginstatus===false) {console.log('false')}
-    //else {console.log('true')};
-  }
-
-  clickReview() {
-    console.log(Authentication.isUserLoggedIn());
-
-    let userlogin = Authentication.getLoggedInUserName();
-    //var UsernameLoggedIn = {userlogin};
-    //String   = userlogin.toString();
-    //console.log(userlogin);
-    var path = "/reviews/" + userlogin; //UsernameLoggedIn;//.stringify();
-    //console.log(path);
-    if (Authentication.isUserLoggedIn()) {
-      //if (UsernameLoggedIn !== ''){
-      this.setState({
-        username: userlogin,
-        loginstatus: true,
-        reviewpath: path
-      });
-      //console.log('here');
-    } else {
-      this.setState({
-        username: "",
-        loginstatus: false,
-        reviewpath: "/reviews"
-      });
-    }
-    //console.log('clickReview')
-    //console.log(this.state.username);
-    //console.log(this.state.reviewpath);
-  }
+  };
 
   render() {
-    const isUserLoggedIn = Authentication.isUserLoggedIn();
+    const { status } = this.state;
 
-    // const isUserLogged = this.reviewAuthentication();
-    //console.log('isUserLoggedIn')
-    //console.log(isUserLoggedIn)
-    // this.reviewAuthentication();
-    //const isUserLoggedIn=this.state.loginstatus;
     return (
       <header>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -71,14 +28,15 @@ class HeaderComonent extends Component {
               MovieStudio
             </Link>
           </div>
+
           <ul className="navbar-nav">
             <li>
-              <Link className="nav-link" to="/login">
+              <Link className="nav-link" to="/">
                 Category
               </Link>
             </li>
             <li>
-              <Link className="nav-link" to="/logout">
+              <Link className="nav-link" to="/">
                 Trend
               </Link>
             </li>
@@ -88,6 +46,7 @@ class HeaderComonent extends Component {
               </Link>
             </li>
           </ul>
+
           <form className="form-inline">
             <input
               className="form-control mr-sm-2"
@@ -102,25 +61,21 @@ class HeaderComonent extends Component {
               Search
             </button>
           </form>
+
           <ul className="navbar-nav navbar-collapse justify-content-end">
-            {/* <li><Link className="nav-link" to="/reviews onClick={this.reviewAuthentication}>Reviews</Link></li> */}
             <li>
-              <Link
-                className="nav-link"
-                to={this.state.reviewpath}
-                onClick={this.clickReview}
-              >
+              <Link className="nav-link" to="/reviews">
                 Review
               </Link>
             </li>
-            {!isUserLoggedIn && (
+            {!status && (
               <li>
                 <Link className="nav-link" to="/login">
                   Login
                 </Link>
               </li>
             )}
-            {isUserLoggedIn && (
+            {status && (
               <li>
                 <Link
                   className="nav-link"
