@@ -33,7 +33,7 @@ public class ReviewsDAO {
 
     public ReviewsModel insertReview(ReviewsModel reviewsModel){
         String sql = "INSERT INTO reviews VALUES(?,?,?,?,?)";
-        int update = jdbcTemplate.update(sql, reviewsModel.getId(), reviewsModel.getContent(), reviewsModel.getPostDate(), reviewsModel.getMovieId(), reviewsModel.getUserId());
+        int update = jdbcTemplate.update(sql, null, reviewsModel.getContent(), reviewsModel.getPostDate(), reviewsModel.getMovieId(), reviewsModel.getUserId());
         if (update == 1) {
             System.out.printf("Review %s is posted", reviewsModel.getContent());
         }

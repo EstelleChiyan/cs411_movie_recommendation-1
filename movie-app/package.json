@@ -13,6 +13,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-star-rating-component": "^1.4.1",
+    "react-wordcloud": "^1.0.5",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
     "styled-components": "^4.2.0"

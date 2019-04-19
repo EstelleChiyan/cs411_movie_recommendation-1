@@ -26,4 +26,14 @@ public class RatingController {
     public List<RatingModel> getRatingByMovieId(@PathVariable(value = "movieId") int movieId){
         return ratingDAO.getRatingByMovieId(movieId);
     }
+
+    @GetMapping("/all")
+    public  List<RatingModel> getRatings(){
+        return ratingDAO.getAllRating();
+    }
+
+    @GetMapping("/{movieId}/{userId}")
+    public RatingModel getRatingByUserAndMovie(@PathVariable("movieId")int movieId, @PathVariable("userId")int userId){
+        return ratingDAO.getRatingByUserAndMovie(userId, movieId);
+    }
 }

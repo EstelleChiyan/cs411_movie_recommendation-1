@@ -1,4 +1,6 @@
 package com.idk.movierecommendation.rating;
+import com.idk.movierecommendation.movie.MovieModel;
+import com.idk.movierecommendation.movie.MovieRowMapper;
 import com.idk.movierecommendation.reviews.ReviewsModel;
 import com.idk.movierecommendation.reviews.ReviewsRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +28,17 @@ public class RatingDAO {
         String sql = "SELECT * FROM rating WHERE movie_id=?";
         List<RatingModel> ratingList = jdbcTemplate.query(sql, new RatingRowMapper(), movieId);
         return ratingList;
+    }
+
+    public List<RatingModel> getAllRating(){
+        String sql= "SELECT * FROM rating";
+        List<RatingModel> ratings=  jdbcTemplate.query(sql, new RatingRowMapper());
+        return ratings;
+    }
+
+    public RatingModel getRatingByUserAndMovie(int user_id, int movie_id){
+        String sql = "SELECT * FROM rating WHERE user_id=? AND movie_id=?";
+        RatingModel rating = jdbcTemplate.queryForObject(sql, new RatingRowMapper(), user_id, movie_id);
+        return rating;
     }
 }

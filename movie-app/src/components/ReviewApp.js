@@ -11,11 +11,11 @@ class ReviewApp extends Component {
     this.state = {
       reviews: [],
       review: {
-        id: 3,
+        id: null,
         content: "",
         post_date: "",
         movie_id: this.props.movie_id,
-        user_id: 0
+        user_id: null
       }
     };
   }
@@ -60,10 +60,18 @@ class ReviewApp extends Component {
   };
 
   render() {
+    //console.log(this.state.review.user_id);
+    let form = null;
+    if (this.state.review.user_id)
+      form = (
+        <ReviewForm onSubmit={this.handleSubmit} onChange={this.handleChange} />
+      );
+    else form = <p>Please Login to Review</p>;
     return (
       <div>
         <ReviewList reviews={this.state.reviews} />
-        <ReviewForm onSubmit={this.handleSubmit} onChange={this.handleChange} />
+        {form}
+        {/* <ReviewForm onSubmit={this.handleSubmit} onChange={this.handleChange} /> */}
       </div>
     );
   }
