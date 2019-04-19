@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import Authentication from "./Authentication";
+import Autocomplete from "./Autocomplete";
 
 class HeaderComonent extends Component {
   constructor(props) {
@@ -48,18 +50,7 @@ class HeaderComonent extends Component {
           </ul>
 
           <form className="form-inline">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search
-            </button>
+            <Autocomplete />
           </form>
 
           <ul className="navbar-nav navbar-collapse justify-content-end">
