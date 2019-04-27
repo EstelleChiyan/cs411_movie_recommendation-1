@@ -36,8 +36,6 @@ class Autocomplete extends Component {
   }
 
   onChange = e => {
-    const { suggestions } = this.props;
-
     this.setState({
       activeSuggestion: 0,
       //filteredSuggestions,

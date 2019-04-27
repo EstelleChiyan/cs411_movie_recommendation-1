@@ -3,6 +3,8 @@ import axios from "axios";
 
 import Movie from "./Movie";
 
+let config = require("../api/config");
+
 class Movies extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,7 @@ class Movies extends Component {
 
   getMovies = () => {
     // const url = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716`;
-    const url = `http://localhost:8080/${this.props.apiUrl}`;
+    const url = `${config.backend_url}/${this.props.apiUrl}`;
     console.log(url);
     axios.get(url).then(res => {
       this.setState({

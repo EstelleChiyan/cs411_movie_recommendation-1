@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import UserService from "../api/UserService";
 
 class RegistrationComponent extends Component {

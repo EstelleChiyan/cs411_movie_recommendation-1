@@ -1,12 +1,14 @@
 import axios from "axios";
 
+let config = require("./config");
+
 class MovieSearchService {
   retrieveMovieSearch(searchWord) {
-    return axios.get(`http://localhost:8080/movies/match/${searchWord}`);
+    return axios.get(`${config.backend_url}/movies/match/${searchWord}`);
   }
 
   retrieveMovieByName(title) {
-    return axios.get(`http://localhost:8080/movies/title/${title}`);
+    return axios.get(`${config.backend_url}/movies/title/${title}`);
   }
 }
 
