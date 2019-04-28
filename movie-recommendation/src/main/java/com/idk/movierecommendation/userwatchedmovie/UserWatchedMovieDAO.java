@@ -18,4 +18,13 @@ public class UserWatchedMovieDAO {
         List<UserWatchedMovieModel> userWatchedMovieList = jdbcTemplate.query(sql, new UserWacthedMovieRowMapper(), userId);
         return userWatchedMovieList;
     }
+
+    public UserWatchedMovieModel insertUserWatchedMovie(UserWatchedMovieModel userWatchedMovieModel) {
+        String sql = "INSERT INTO user_watched_movie VALUES(?,?)";
+        int update = jdbcTemplate.update(sql, userWatchedMovieModel.getUserId(), userWatchedMovieModel.getMovieId());
+        if (update == 1) {
+            System.out.printf("User with id %s watched moive with id %s\n", userWatchedMovieModel.getUserId(), userWatchedMovieModel.getMovieId());
+        }
+        return userWatchedMovieModel;
+    }
 }

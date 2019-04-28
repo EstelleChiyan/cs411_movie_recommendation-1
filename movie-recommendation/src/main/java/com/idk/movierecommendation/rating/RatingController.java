@@ -1,5 +1,7 @@
 package com.idk.movierecommendation.rating;
 import com.idk.movierecommendation.reviews.ReviewsModel;
+import com.idk.movierecommendation.userwatchedmovie.UserWatchedMovieDAO;
+import com.idk.movierecommendation.userwatchedmovie.UserWatchedMovieModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +19,17 @@ public class RatingController {
     @Autowired
     private RatingDAO ratingDAO;
 
+    @Autowired
+    private UserWatchedMovieDAO userWatchedMovieDAO;
+
     @PostMapping
     public RatingModel addRating(@Valid @RequestBody RatingModel rating){
-        return ratingDAO.addRating(rating);
+        ratingDAO.addRating(rating);
+        UserWatchedMovieModel userWatchedMovieModel = new UserWatchedMovieModel();
+        userWatchedMovieModel.setUserId(rating.getUser_id());
+        userWatchedMovieModel.setMovieId(rating.getMovie_id());
+        userWatchedMovieDAO.insertUserWatchedMovie(userWatchedMovieModel);
+        return rating;
     }
 
     @GetMapping("/{movieId}")
